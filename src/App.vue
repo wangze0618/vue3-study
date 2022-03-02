@@ -1,40 +1,27 @@
 <template>
   <div class="container">
-    <!-- 单个元素 -->
-    <div ref="box">我是box</div>
-    <!-- 被遍历的元素 -->
-    <ul>
-      <li :ref="setDom" v-for="item in 4" :key="item">第{{ item }}li</li>
-    </ul>
+    <h1>
+      作者：周杰伦
+      <a href="javascript:;" @click="followFn">{{
+        loading ? "正在关注" : "关注"
+      }}</a>
+    </h1>
+    <hr />
   </div>
+  <Son4></Son4>
 </template>
 
 <script>
-import { onMounted, ref } from "vue";
+import { ref } from "vue";
+import Son4 from "./components/Son4.vue";
+import { followMixin } from "./mixins/mixins";
 export default {
+  components: { Son4 },
   name: "App",
   setup() {
-    // 单个DOM元素
-    // 1. 先定义一个空的响应式数据ref()来定义
-    // 2. setup()中返回该数据，你想获取哪个dom元素，
-    //就在哪个元素上使用ref属性绑定该数据即可
-    const box = ref(null);
-    // onMounted(() => {
-    //   console.log(box.value);
-    // });
-
-    // v-for 遍历的元素
-    //1. 定义一个空数组，接受所有的li
-    //2. 定义一个函数，在空数组里push DOM
-    const domList = [];
-    const setDom = (dom) => {
-      domList.push(dom);
-    };
-    // onMounted(() => {
-    //   console.log(domList);
-    // });
-    return { box, domList, setDom };
+    return {};
   },
+  mixins: [followMixin],
 };
 </script>
 

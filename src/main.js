@@ -6,4 +6,9 @@
 import { createApp } from "vue";
 import App from "./App.vue";
 const app = createApp(App);
+// app.mixin({
+//   mounted() {
+//     console.log("DOM 准备好了");
+//   },
+// });
 app.mount("#app");
